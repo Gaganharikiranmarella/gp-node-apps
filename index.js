@@ -10,6 +10,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Root test route to avoid 404 on /
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
+
 app.use('/api/contact', contactRoute);
 
 export default app;  // Export Express app for Vercel

@@ -6,6 +6,10 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   const { name, email, message } = req.body;
 
+  if (!name || !email || !message) {
+    return res.status(400).json({ message: 'Please fill all fields' });
+  }
+
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -26,8 +30,8 @@ router.post('/', async (req, res) => {
     res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
     console.error('Email error:', error);
-    res.status(500).json({ message: 'Failed to send email' });
+    res.status(500).json({ message: 'Failed to send email', error: error.toString() });
   }
 });
 
-export default router; // ✅ FIXED EXPORT
+export default router;
