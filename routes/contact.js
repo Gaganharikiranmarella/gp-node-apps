@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 
 const router = express.Router();
 
+// POST /api/contact
 router.post('/', async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -21,7 +22,7 @@ router.post('/', async (req, res) => {
 
     const mailOptions = {
       from: email,
-      to: process.env.EMAIL_USER,  // Your email to receive messages
+      to: process.env.EMAIL_USER,
       subject: `Contact Form Submission from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     };

@@ -10,12 +10,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Root route (optional, to check server status)
+// Root route - just to check if API is running
 app.get('/', (req, res) => {
   res.send('API is running');
 });
 
-// Use contact route
+// Contact route handles POST requests for sending messages
 app.use('/api/contact', contactRoute);
 
 export default app;
