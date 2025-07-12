@@ -7,12 +7,9 @@ dotenv.config();
 
 const app = express();
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use('/api/contact', contactRoute);
 
-export default app;
-
+export default app;  // Export Express app for Vercel
